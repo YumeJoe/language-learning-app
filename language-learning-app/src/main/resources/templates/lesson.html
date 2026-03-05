@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок</title>
+</head>
+<body>
+<h1>Переведи слово:</h1>
+
+<div th:if="${word}">
+    <h2 th:text="${word.original}">слово</h2>
+
+    <form th:action="@{/lesson/check}" method="post">
+        <input type="hidden" name="wordId" th:value="${word.id}" />
+        <input type="text" name="answer" placeholder="Твой перевод" required />
+        <button type="submit">Проверить</button>
+    </form>
+</div>
+
+<div th:if="${message}" th:text="${message}" style="margin-top: 20px; color: blue;"></div>
+
+<div th:if="${isCorrect != null}">
+    <a th:href="@{/lesson}">Следующее слово</a>
+</div>
+</body>
+</html>
