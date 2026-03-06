@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест: <span th:text="${lessonTitle}"></span></title>
+</head>
+<body>
+<h1 th:text="${lessonTitle}">Название урока</h1>
+<p>Вопрос <span th:text="${current}"></span> из <span th:text="${total}"></span></p>
+
+<div th:if="${word}">
+    <h2 th:text="${word.original}">слово</h2>
+
+    <form th:action="@{/test/answer}" method="post">
+        <input type="hidden" name="wordId" th:value="${word.id}" />
+        <input type="hidden" name="currentIndex" th:value="${currentIndex}" />
+        <input type="text" name="answer" placeholder="Твой перевод" required />
+        <button type="submit">Ответить</button>
+    </form>
+</div>
+
+<br>
+<a href="/lessons">Прервать тест</a>
+</body>
+</html>

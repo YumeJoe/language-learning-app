@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изучение языков</title>
+</head>
+<body>
+<h1>Приложение для изучения языков</h1>
+
+<div th:if="${session.username}">
+    <p>Привет, <span th:text="${session.username}"></span>!</p>
+    <a href="/profile">Мой профиль</a> | <a href="/logout">Выйти</a>
+</div>
+<div th:unless="${session.username}">
+    <a href="/login">Вход</a> | <a href="/register">Регистрация</a>
+</div>
+
+<ul>
+    <li><a href="/lessons">Список уроков</a></li>
+</ul>
+</body>
+</html>

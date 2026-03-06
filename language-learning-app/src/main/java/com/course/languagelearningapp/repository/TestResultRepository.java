@@ -1,14 +1,11 @@
 package com.course.languagelearningapp.repository;
 
-import com.course.languagelearningapp.model.Word;
+import com.course.languagelearningapp.model.TestResult;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WordRepository extends JpaRepository<Word, Long> {
-
-    List<Word> findByLanguage(String language);
-
-
+public interface TestResultRepository extends JpaRepository<TestResult, Long> {
+    List<TestResult> findByUserId(Long userId);
 }

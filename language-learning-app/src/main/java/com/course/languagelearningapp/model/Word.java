@@ -6,30 +6,42 @@ import jakarta.persistence.*;
 @Table(name = "words")
 public class Word {
 
+    @ManyToOne
+    @JoinColumn(name = "lesson_id")
+    private Lesson lesson;
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String original;  // слово на иностранном (например, "dog")
+    private String original;
 
     @Column(nullable = false)
-    private String translation; // перевод (например, "собака")
+    private String translation;
 
     @Column(nullable = false)
-    private String language; // язык (например, "english", "german")
+    private String language;
 
-    // Конструктор без параметров (обязательно для JPA)
+
     public Word() {}
 
-    // Конструктор для удобства создания слов
+
     public Word(String original, String translation, String language) {
         this.original = original;
         this.translation = translation;
         this.language = language;
     }
 
-    // Геттеры и сеттеры (обязательно)
+    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }

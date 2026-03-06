@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат теста</title>
+</head>
+<body>
+<h1>Тест завершён!</h1>
+<h2 th:text="${lessonTitle}">Название урока</h2>
+<p>Правильных ответов: <span th:text="${correct}"></span> из <span th:text="${total}"></span></p>
+
+<a href="/lessons">К списку уроков</a>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой профиль</title>
+</head>
+<body>
+<h1>Профиль пользователя: <span th:text="${user.username}">Имя</span></h1>
+
+<h2>История тестов</h2>
+
+<div th:if="${results.empty}">
+    <p>Вы ещё не проходили тесты.</p>
+</div>
+
+<div th:unless="${results.empty}">
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <thead>
+        <tr>
+            <th>Урок</th>
+            <th>Результат</th>
+            <th>Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.lesson != null ? result.lesson.title : 'Урок удалён'}">Animals</td>
+            <td th:text="${result.correctAnswers + '/' + result.totalQuestions}">5/10</td>
+            <td th:text="${#temporals.format(result.completedAt, 'dd.MM.yyyy HH:mm')}">01.01.2025 12:00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br>
+<a href="/">На главную</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Уроки</title>
+</head>
+<body>
+<h1>Список уроков</h1>
+
+<div th:each="lesson : ${lessons}" style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc;">
+    <h2 th:text="${lesson.title}">Название урока</h2>
+    <p th:text="${lesson.description}">Описание</p>
+    <p>Язык: <span th:text="${lesson.language}">english</span></p>
+    <p>Слов в уроке: <span th:text="${lesson.words.size()}">0</span></p>
+    <a th:href="@{'/lessons/' + ${lesson.id}}">Перейти к уроку</a>
+</div>
+
+<br>
+<a href="/">На главную</a>
+</body>
+</html>

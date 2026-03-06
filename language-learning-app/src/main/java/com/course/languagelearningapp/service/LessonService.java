@@ -19,7 +19,7 @@ public class LessonService {
     public Word getRandomWord(String language) {
         List<Word> words = wordRepository.findByLanguage(language);
         if (words.isEmpty()) {
-            return null; // или выбросить исключение
+            return null;
         }
         int index = random.nextInt(words.size());
         return words.get(index);
@@ -30,7 +30,7 @@ public class LessonService {
         if (word == null) {
             return false;
         }
-        // Простейшая проверка: сравниваем перевод (можно улучшить)
+
         return word.getTranslation().equalsIgnoreCase(userAnswer.trim());
     }
 }
