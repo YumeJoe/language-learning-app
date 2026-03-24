@@ -7,14 +7,12 @@ import java.util.List;
 @Entity
 @Table(name = "lessons")
 public class Lesson {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String title;
-
     private String description;
 
     @Column(nullable = false)
@@ -23,16 +21,13 @@ public class Lesson {
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Word> words = new ArrayList<>();
 
-    // Конструкторы
     public Lesson() {}
-
     public Lesson(String title, String description, String language) {
         this.title = title;
         this.description = description;
         this.language = language;
     }
 
-    // Геттеры и сеттеры
     public Long getId() {
         return id;
     }

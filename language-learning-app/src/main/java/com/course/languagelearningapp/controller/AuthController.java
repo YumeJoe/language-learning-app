@@ -24,15 +24,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam String username,
-                           @RequestParam String password,
-                           Model model) {
+    public String register(@RequestParam String username, @RequestParam String password, Model model) {
 
         if (userRepository.findByUsername(username).isPresent()) {
             model.addAttribute("error", "Пользователь с таким именем уже существует");
             return "auth/register";
         }
-
 
         User user = new User(username, password);
         userRepository.save(user);
@@ -46,10 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        HttpSession session,
-                        Model model) {
+    public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
         User user = userRepository.findByUsername(username).orElse(null);
 
         if (user == null || !user.getPassword().equals(password)) {

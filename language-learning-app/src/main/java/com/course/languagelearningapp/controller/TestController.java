@@ -22,25 +22,18 @@ public class TestController {
     private final UserRepository userRepository;
     private final TestResultRepository testResultRepository;
 
-    public TestController(LessonRepository lessonRepository,
-                          UserRepository userRepository,
-                          TestResultRepository testResultRepository) {
+    public TestController(LessonRepository lessonRepository, UserRepository userRepository, TestResultRepository testResultRepository) {
         this.lessonRepository = lessonRepository;
         this.userRepository = userRepository;
         this.testResultRepository = testResultRepository;
     }
-
     @GetMapping("/start/{lessonId}")
     public String startTest(@PathVariable Long lessonId, HttpSession session) {
         Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
         if (lesson == null) {
             return "redirect:/lessons";
         }
-
-
         session.setAttribute("lessonId", lessonId);
-
-
         List<Word> words = lesson.getWords();
         session.setAttribute("testWords", words);
         session.setAttribute("currentIndex", 0);
@@ -88,7 +81,6 @@ public class TestController {
             session.setAttribute("correctAnswers", correctAnswers);
         }
 
-
         session.setAttribute("currentIndex", currentIndex + 1);
 
         return "redirect:/test/question";
@@ -104,7 +96,6 @@ public class TestController {
 
         int total = words != null ? words.size() : 0;
 
-
         if (userId != null && lessonId != null) {
             User user = userRepository.findById(userId).orElse(null);
             Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
@@ -112,14 +103,13 @@ public class TestController {
             if (user != null && lesson != null) {
                 TestResult result = new TestResult(user, lesson, correctAnswers, total);
                 testResultRepository.save(result);
-                System.out.println("✅ Результат сохранён для пользователя: " + user.getUsername());
+                System.out.println("Результат сохранён для пользователя: " + user.getUsername());
             }
         }
 
         model.addAttribute("correct", correctAnswers);
         model.addAttribute("total", total);
         model.addAttribute("lessonTitle", lessonTitle);
-
 
         session.removeAttribute("testWords");
         session.removeAttribute("currentIndex");

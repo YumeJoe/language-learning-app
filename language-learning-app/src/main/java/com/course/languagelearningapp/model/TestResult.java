@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "test_results")
 public class TestResult {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +23,6 @@ public class TestResult {
     private LocalDateTime completedAt;
 
     public TestResult() {}
-
     public TestResult(User user, Lesson lesson, int correctAnswers, int totalQuestions) {
         this.user = user;
         this.lesson = lesson;
@@ -32,7 +30,6 @@ public class TestResult {
         this.totalQuestions = totalQuestions;
         this.completedAt = LocalDateTime.now();
     }
-
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

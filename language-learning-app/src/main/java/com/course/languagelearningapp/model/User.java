@@ -21,15 +21,11 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TestResult> testResults = new ArrayList<>();
 
-
     public User() {}
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -20,11 +20,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Если уроков нет — создаём
+
         if (lessonRepository.count() == 0) {
             System.out.println("Создаём тестовые уроки и слова");
 
-            // Урок 1: Животные
+
             Lesson animalsLesson = new Lesson("Animals", "Basic animals vocabulary", "english");
             lessonRepository.save(animalsLesson);
 
@@ -40,7 +40,7 @@ public class DataLoader implements CommandLineRunner {
             cow.setLesson(animalsLesson);
             wordRepository.save(cow);
 
-            // Урок 2: Еда
+
             Lesson foodLesson = new Lesson("Food", "Common food items", "english");
             lessonRepository.save(foodLesson);
 
@@ -57,8 +57,8 @@ public class DataLoader implements CommandLineRunner {
             wordRepository.save(apple);
 
             System.out.println("Готово:");
-            System.out.println("   - Урок 'Animals' с 3 словами");
-            System.out.println("   - Урок 'Food' с 3 словами");
+            System.out.println("Урок 'Animals' с 3 словами");
+            System.out.println("Урок 'Food' с 3 словами");
         } else {
             System.out.println("Уроки уже есть, пропускаем загрузку");
         }
